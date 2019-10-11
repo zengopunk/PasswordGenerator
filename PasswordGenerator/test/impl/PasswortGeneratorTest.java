@@ -11,7 +11,7 @@ public class PasswortGeneratorTest {
 		int length = 12;
 		String[] vocals = new String[]{"a","e","i"};
 		
-		PasswordGenerator generator = new PasswordGenerator.Builder().length(12).vocals(vocals).build();
+		PasswordGeneratorSpeakable generator = new PasswordGeneratorSpeakable.Builder().length(12).vocals(vocals).build();
 		String passwordUnderTest = generator.create();
 				
 		Assert.assertEquals("Length not correct", length, passwordUnderTest.length());
@@ -23,7 +23,7 @@ public class PasswortGeneratorTest {
 		int length = 13;
 		String[] vocals = new String[]{"a","e","i"};
 		
-		PasswordGenerator generator = new PasswordGenerator.Builder().length(13).vocals(vocals).build();
+		PasswordGeneratorSpeakable generator = new PasswordGeneratorSpeakable.Builder().length(13).vocals(vocals).build();
 		String passwordUnderTest = generator.create();
 				
 		Assert.assertEquals("Length not correct", length, passwordUnderTest.length());
@@ -35,7 +35,7 @@ public class PasswortGeneratorTest {
 		
 		String[] vocals = new String[]{"a","e","i"};
 		
-		PasswordGenerator generator = new PasswordGenerator.Builder().length(length).vocals(vocals).build();
+		PasswordGeneratorSpeakable generator = new PasswordGeneratorSpeakable.Builder().length(length).vocals(vocals).build();
 		String passwordUnderTest = generator.create();
 		
 		Assert.assertTrue(passwordUnderTest.contains(vocals[0]) 
@@ -51,7 +51,7 @@ public class PasswortGeneratorTest {
 		
 		String[] symbols = new String[]{"?","=","&","!","€"};
 		
-		PasswordGenerator generator = new PasswordGenerator.Builder().length(length).symbols(symbols, 2).build();
+		PasswordGeneratorSpeakable generator = new PasswordGeneratorSpeakable.Builder().length(length).symbols(symbols, 2).build();
 		String passwordUnderTest = generator.create();
 		
 		Assert.assertTrue(passwordUnderTest.contains(symbols[0]) 

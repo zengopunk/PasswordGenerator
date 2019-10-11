@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author thomas
  *
  */
-public class PasswordGenerator implements PasswortGeneratorInterface {
+public class PasswordGeneratorSpeakable implements PasswortGenerator {
 	
 	int length = 10;
 	
@@ -22,7 +22,7 @@ public class PasswordGenerator implements PasswortGeneratorInterface {
 	private ArrayList<String> signType = new ArrayList<String>();
 	
 	
-	private PasswordGenerator(Builder builder) {
+	private PasswordGeneratorSpeakable(Builder builder) {
 
 		// length
 		if (builder.length > 0) {
@@ -125,8 +125,8 @@ public class PasswordGenerator implements PasswortGeneratorInterface {
 			return this;
 		}
 		
-		public PasswordGenerator build() {
-			PasswordGenerator result = new PasswordGenerator(this);
+		public PasswordGeneratorSpeakable build() {
+			PasswordGeneratorSpeakable result = new PasswordGeneratorSpeakable(this);
 			return result;
 		}
 		

@@ -1,13 +1,13 @@
 package impl;
 
-public interface PasswortGeneratorInterface {
+public interface PasswortGenerator {
 
 	public static final String[] VOCALS = new String[] {"a","e","i","o","u"};
 	public static final String[] CONSONANTS = new String[] {"b","c","d","f","g","h",
 			"j","k","l","m","n","p","q","q","r","s","t","v","w","x","y","z"};
 	public static final int length = 10;  
 
-	public static PasswortGeneratorInterface instance = new PasswortGeneratorInterface() {
+	public static PasswortGenerator standard = new PasswortGenerator() {
 		
 		@Override
 		public String create() {
@@ -27,7 +27,7 @@ public interface PasswortGeneratorInterface {
 	};
 	
 	public static void main(String[] args) {
-		System.out.println(instance.create());
+		System.out.println(standard.create());
 	}
 	
 	public String create();
