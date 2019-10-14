@@ -8,7 +8,7 @@ import java.util.List;
  * @author thomas
  *
  */
-public class PasswordGeneratorSpeakable implements PasswortGenerator {
+public class PasswordGeneratorSpeakable implements PasswordGenerator {
 	
 	int newPasswordLength = 10;
 	
@@ -135,7 +135,7 @@ public class PasswordGeneratorSpeakable implements PasswortGenerator {
 	/*
 	 * Bilder Klasse um PasswordGerator zu konfigurieren. Anwendung des Builder Pattern 
 	 */
-	static class Builder {
+	static public class Builder {
 		private int length;
 		private int digitCount;
 		private int symbolCount;
