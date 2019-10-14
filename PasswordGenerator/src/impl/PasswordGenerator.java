@@ -2,9 +2,9 @@ package impl;
 
 public interface PasswordGenerator {
 
-	public static final char[] VOCALS = new char[] {'a','e','i','o','u','ä'};
+	public static final char[] VOCALS = new char[] {'a','e','i','o','u','ä','ö','ü'};
 	public static final char[] CONSONANTS = new char[] {'b','c','d','f','g','h',
-			'j','k','l','m','n','p','q','q','r','s','t','v','w','x','y','z'};
+			'j','k','l','m','n','p','q','q','r','s','t','v','w','x','y','z','ß'};
 	public static final int length = 10;  
 
 	public static PasswordGenerator standard = new PasswordGenerator() {
