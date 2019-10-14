@@ -41,7 +41,7 @@ public class PasswortGeneratorSpeakableTest {
 		String passwordUnderTest = generator.create();
 		
 		
-		
+		// does contain 'a' or 'e' or 'i'
 		Assert.assertTrue((Arrays.binarySearch(passwordUnderTest.toCharArray(), vocals[0]) != -1) 
 		|| (Arrays.binarySearch(passwordUnderTest.toCharArray(), vocals[1]) != -1) 
 		||(Arrays.binarySearch(passwordUnderTest.toCharArray(), vocals[2]) != -1));
@@ -49,6 +49,20 @@ public class PasswortGeneratorSpeakableTest {
 	}
 	
 	
-	
+	@Test
+	public void checkIfPasswordContainsASymbol() {
+		int length = 12;
+		
+		char[] symbols = new char[]{'?','!','§'};
+		
+		PasswordGeneratorSpeakable generator = new PasswordGeneratorSpeakable.Builder().length(length).symbols(symbols, 2).build();
+		String passwordUnderTest = generator.create();
+		
+		// does contain '?' or '!' or '§'
+		Assert.assertTrue((Arrays.binarySearch(passwordUnderTest.toCharArray(), symbols[0]) != -1) 
+				|| (Arrays.binarySearch(passwordUnderTest.toCharArray(), symbols[1]) != -1) 
+				||(Arrays.binarySearch(passwordUnderTest.toCharArray(), symbols[2]) != -1));
+		
+	}
 	
 }

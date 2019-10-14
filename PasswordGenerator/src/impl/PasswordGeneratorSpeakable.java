@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PasswordGeneratorSpeakable implements PasswortGenerator {
 	
-	int length = 10;
+	int newPasswordLength = 10;
 	
 	private char[] specialCharacters;
 	private char[] digitCharacters;
@@ -27,7 +27,7 @@ public class PasswordGeneratorSpeakable implements PasswortGenerator {
 
 		// length
 		if (builder.length > 0) {
-			this.length = builder.length;
+			this.newPasswordLength = builder.length;
 		}
 		
 		// vocals 
@@ -68,16 +68,13 @@ public class PasswordGeneratorSpeakable implements PasswortGenerator {
 	
 	
 	
-	/*
-	 * hier kann man ganz toll tdd machen
-	 */
 	@Override
 	public String create() {	
-		char[] result = new char[length];
+		char[] result = new char[newPasswordLength];
 		
 		int counter = 0;
 		
-		while (counter < length) {
+		while (counter < newPasswordLength) {
 			if (counter % 2 == 0) {
 				result[counter] = vocalCharacters[(int)(Math.random() * vocalCharacters.length)];
 			} else {
@@ -87,15 +84,15 @@ public class PasswordGeneratorSpeakable implements PasswortGenerator {
 			counter++;
 		}
 		
-		List<Integer> randPositions = new ArrayList<>();   
+		List<Integer> randPositions = new ArrayList<>();
+		// digitCharacters
 		if (digitCharacters != null) {
 			for (int i = 0; i < digitCount; i++) {
 				char randomDigit = digitCharacters[(int) (Math.random() * digitCharacters.length)];
-				int randArrayPosition = (int)(Math.random() * length);
-				
+				int randArrayPosition = (int)(Math.random() * newPasswordLength);
 				
 				while (randPositions.contains(randArrayPosition)) {
-					randArrayPosition = (int)(Math.random() * length);
+					randArrayPosition = (int)(Math.random() * newPasswordLength);
 				}
 				
 				randPositions.add(randArrayPosition);
@@ -106,26 +103,46 @@ public class PasswordGeneratorSpeakable implements PasswortGenerator {
 			}
 		}
 		
+		
+		randPositions = new ArrayList<>();
+		// specialCharacters
+		if (specialCharacters != null) {
+			for (int i = 0; i < symbolsCount; i++) {
+				char randomSymbol = specialCharacters[(int) (Math.random() * specialCharacters.length)];
+				int randArrayPosition = (int)(Math.random() * newPasswordLength);
+				
+				while (randPositions.contains(randArrayPosition)) {
+					randArrayPosition = (int)(Math.random() * newPasswordLength);
+				}
+				
+				randPositions.add(randArrayPosition);
+				
+				result[randArrayPosition] = randomSymbol;
+				
+			}
+		}
 
 		return new String(result);
 	}
 	
 	
 	public static void main(String[] args) {
-		PasswordGeneratorSpeakable passwordGeneratorSpeakable = new PasswordGeneratorSpeakable.Builder().length(12).digits(new char[]{'7','4','3'},2).symbols(new char[] {'$'}, 2).build();
+		PasswordGeneratorSpeakable passwordGeneratorSpeakable = new PasswordGeneratorSpeakable.Builder().length(16).digits(new char[]{'1','0','3'},2).symbols(new char[] {'$','€'}, 2).build();
 		String newPassword = passwordGeneratorSpeakable.create();
 		System.out.println(newPassword);
 	}
 	
-	
+	/*
+	 * Bilder Klasse um PasswordGerator zu konfigurieren. Anwendung des Builder Pattern 
+	 */
 	static class Builder {
-		int length;
-		int digitCount;
-		int symbolCount;
-		char[] vocals;
-		char[] consonants;
-		char[] digits;
-		char[] symbols;
+		private int length;
+		private int digitCount;
+		private int symbolCount;
+		private char[] vocals;
+		private char[] consonants;
+		private char[] digits;
+		private char[] symbols;
 		
 		public Builder() {}
 		
